@@ -1,0 +1,21 @@
+<h1>My Payments: </h1>
+<br>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Card Nickname</th>
+      <th scope="col">Card Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% my_payments.each do |p| %>
+    <tr>
+      <td><%= p.name %></td>
+      <td>xxxx-xxxx-xxxx-<%= p.card_number.last(4) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<a class="btn btn-primary text-white" <%= link_to '+ New Payment', new_my_payments_path %>

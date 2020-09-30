@@ -1,0 +1,58 @@
+# == Schema Information
+#
+# Table name: auctions
+#
+#  id                 :bigint           not null, primary key
+#  active             :integer          default(1)
+#  auction_end_time   :datetime
+#  auction_start_time :datetime
+#  category           :string
+#  current_price      :float
+#  description        :text
+#  highest_bid        :float
+#  highest_bidder     :string
+#  name               :string
+#  seller             :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  user_id            :bigint
+#
+# Indexes
+#
+#  index_auctions_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+
+#
+
+one:
+  name: Nintendo Gamecube
+  description: A gaming console from the early 2000s
+  current_price: 1.5
+  seller: Alice
+  highest_bidder: Bob
+  auction_end_time: 2020-05-21 13:44:01
+  auction_start_time: 2020-05-24 13:44:01
+  highest_bid: 1.5
+  category: Entertainment
+  user_id: 1
+
+two:
+  name: Cardinals Pennant
+  description: A pennant of the St. Louis Cardinals
+  current_price: 1.5
+  seller: Bob
+  highest_bidder: Alice
+  auction_end_time: 2020-05-21 13:44:01
+  auction_start_time: 2020-05-24 13:44:01
+  highest_bid: 1.5
+  category: Sports
+  user_id: 2

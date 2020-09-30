@@ -1,0 +1,70 @@
+
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+
+  <!-- Portfolio Item Heading -->
+  <h1 class="my-4"><strong><%= @auction.name %></strong>
+  </h1>
+
+  <!-- Portfolio Item Row -->
+  <div class="row">
+
+    <div class="col-md-8">
+      <img class="img-fluid" <% if auction.image.present? %>
+            <%= image_tag(auction.image, width:700) %>
+          <% else %>
+            <%= image_tag("No_image.jpg", width: 700) %> 
+          <%end %>
+    </div>
+
+    <div class="col-md-4">
+    <h2 class="my-3"><strong>Current Price: <%= number_to_currency(@auction.current_price) %></strong></h2>
+      <br>
+      <% if auction.highest_bidder.present? %>
+      <h3 class="my-3"><strong> Highest Bidder: </strong></h3>
+      <ul><strong><%= @auction.highest_bidder %></strong></ul>
+            <%end%>
+      </ul>
+      <br>
+      <br>
+      <h3 class="my-3"><strong>Auction Description</strong></h3>
+      <p><%= @auction.description %></p>
+      <br>
+      
+
+      <h3 class="my-3"><strong>Auction Details</strong></h3>
+      <ul>
+        <li>Auction Category: <%= @auction.category %></li>
+        <br>
+        <li> Seller:<%= @auction.seller.name %></li>
+        <br>
+        <li>Auction Start Date: <%= @auction.auction_start_time.strftime("%m/%d/%Y") %> - <%=@auction.auction_start_time.strftime("%I:%M %p")%></li>
+        <br>
+        <li>Auction End Date: <%= @auction.auction_end_time.strftime("%m/%d/%Y") %> - <%=@auction.auction_start_time.strftime("%I:%M %p")%></li>
+        <br>
+        <% if auction.active == 1 %>
+          <li>Time Left: <%= distance_of_time_in_words_to_now(@auction.auction_end_time, include_seconds: true) %></li>
+        <%end %>
+        
+        <% if auction.active == 0 %>
+          <li>Auction Ended: <%= distance_of_time_in_words_to_now(@auction.auction_end_time, include_seconds: true) %></li>
+        <%end %>
+      </ul>
+    </div>
+
+  </div>
+  <!-- /.row -->
+  
+
+</div>
+<!-- /.container -->
+<br>
+<hr width="70%">
+
+
+<p>
+<%= link_to 'Update Posting', auctions_edit_path, class: "btn btn-primary" %>
+</p>
+
+<a class="btn btn-primary text-white" <%= link_to '+ Back', auctions_path %>

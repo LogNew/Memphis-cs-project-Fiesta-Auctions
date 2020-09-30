@@ -1,0 +1,26 @@
+<h1>Past Auctions</h1>
+<h3>Below are all of your auctions that have expired since <%= date.strftime("%m/%d/%Y") %></h3>
+
+
+
+
+<br>
+
+<% auctions.each do |a| %>
+    <div class="card text-center">
+        <div class="card-header">
+            <strong>Item:
+                <%= a.name %>
+            </strong>
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">
+            <b> $<%= a.current_price %> </b>
+            </h5>
+            <p class="card-text">Description: <%=a.description %></p>
+            <p class="card-text">Expires: <%=a.auction_end_time.strftime("%m/%d/%Y") %>
+        </div>
+    </div>
+    <br>
+
+<% end %>

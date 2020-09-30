@@ -1,0 +1,28 @@
+<h1>Enter Payment Information: </h1><br/>
+
+<%= form_with model: my_payments, url: my_payments_path, method: :post, local: true, scope: :my_payments do |f| %>
+
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :card_number %><br>
+    <%= f.text_field :card_number %>
+  </div>
+
+  <div>
+    <%= f.label :security_number %><br>
+    <%= f.text_field :security_number %>
+  </div>
+
+  <div>
+    <%= f.label :exp_date %><br>
+    <%= f.text_field :exp_date %>
+  </div>
+
+  <%= f.submit "Add Payment"%>
+
+
+<%end%>

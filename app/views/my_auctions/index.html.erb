@@ -1,0 +1,31 @@
+<h1>My Auctions </h1>
+<hr>
+<br>
+
+<% auctions.each do |a| %>
+    <div class="card text-center">
+        <div class="card-header">
+            <strong>Item:
+                <%= a.name %>
+            </strong>
+        </div>
+        <div class="card-body">
+            <% if a.image.attached?%>
+                <div class="avatar">
+                    <%= image_tag(a.image, class: 'img-circular', width:150, height:150, align: "left") %>
+                </div>
+            <%end%>
+            <h3 class="card-title">
+            <b> $<%= a.current_price %> </b>
+            </h5>
+            <p class="card-text">Description: <%=a.description %></p>
+            <p class="card-text">Expires: <%=a.auction_end_time.strftime("%m/%d/%Y") %> <%=a.auction_start_time.strftime("%I:%M %p")%> </p>
+            <br>
+            <td><a class="btn btn-primary text-white" <%= link_to 'View Auction', auction_path(a) %>
+        </div>
+    </div>
+    <br>
+
+<% end %>
+<br>
+<a class="btn btn-primary text-white" <%= link_to '+ View Current Auctions', auctions_path %>

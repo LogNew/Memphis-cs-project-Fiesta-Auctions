@@ -1,0 +1,60 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading -->
+      <h1 class="my-4">Current Auctions       </h1>
+      <h4 ><center> Sort by: <%= sortable "name", "Item Name" %>  |  <%= sortable "category", "Category" %>  |  <%= sortable "current_price", "Current Price" %>  |  <%= sortable "auction_start_time", "Start Date" %>  | <%= sortable "auction_end_time", "End Date" %></center></h4>
+      <hr>
+
+      <!-- Project One -->
+      <% @auctions.each do |a| %>
+
+      <div class="row">
+        <div class="col-md-7">
+          <a>
+
+          <% if a.image.present? %>
+            <%= image_tag(a.image,:class =>"img-fluid rounded mb-3 mb-md-0", width:300) %>
+          <% else %>
+            <%= image_tag("No_image.jpg",:class =>"img-fluid ", width:300) %>
+          <% end %><td>
+  
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h2><strong><%=a.name%></strong></h2>
+          <br>
+         <ul> <p><strong>Current Price: </strong><%= number_to_currency(a.current_price) %></strong><br>
+          <strong>Category:</strong> <%= a.category %>
+          </p>
+          <br>
+          <p><strong>Auction Description: </strong><%= a.description %></p>
+          <br>
+          <p><strong>Seller: </strong><%= a.seller.email %></p>
+          <p><strong>Auction Start Date: </strong><%= a.auction_start_time.strftime("%m/%d/%Y") %> - <%=a.auction_start_time.strftime("%I:%M %p")%></p>
+          <p><strong>Auction End Date: </strong><%= a.auction_end_time.strftime("%m/%d/%Y") %> - <%=a.auction_start_time.strftime("%I:%M %p")%></p>
+          <p><strong>Time Left: </strong><%= distance_of_time_in_words_to_now(a.auction_end_time, include_seconds: true)%></p>
+          </ul>
+          <br>
+          <a class="btn btn-primary text-white" <%= link_to 'View Auction', auction_path(a) %>
+
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <hr>
+      <% end %>
+
+
+      
+
+    </div>
+    <!-- /.container -->
+
+
+    <a class="btn btn-primary text-white" <%= link_to "+ Create New Auction", new_auction_path %>
+

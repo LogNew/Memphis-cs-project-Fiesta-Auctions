@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reviews</h1>
+<br>
+
+<table class= "table table-hover" >
+  <thead>
+    <tr>
+      <th><%= sortable "title", "User Experience"%></th>
+      <th><%= sortable "rating" %></th>
+      <th><%= sortable "description", "Comments" %></th>
+      <th><%= sortable "reviewer", "Reviewer" %></th>
+      <th><%= sortable "user_reviewed", "Reviewed" %></th>
+      <th>View Review</th>
+      <th>Edit Review</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.title %></td>
+        <td><%= review.rating %> stars</td>
+        <td><%= review.description %></td>
+        <td><%= review.reviewer %></td>
+        <td><%= review.user_reviewed %></td>
+        <td><%= link_to 'Show', review %></td>
+        <% if current_user.email == review.reviewer %>
+          <td><%= link_to 'Edit', edit_review_path(review) %></td>
+        <%end%>
+        <% if current_user.email == review.reviewer %>
+          <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<a class="btn btn-primary text-white" <%= link_to '+ New Review', new_review_path %> </a>

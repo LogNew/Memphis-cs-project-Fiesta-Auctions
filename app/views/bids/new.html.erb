@@ -1,0 +1,15 @@
+<h1>Create Bid</h1> 
+
+<%= form_with model: bid, url: bid_create_path, method: :post, local: true, scope: :bid do |f|%>
+    <div>
+      What would  you like your 
+          <%= f.label :bid_price %>
+        to be?     <br>
+          <%= f.text_field :bid_price %>
+    </div>
+
+    <br>
+
+  <%= f.submit "Bid!" %>
+
+<% end %>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fiesta Auctions </title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+ 
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('cart2.png') %>
+ 
+ 
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+      <a class="navbar-brand"<%= link_to image_tag("logo1.png", height:50), root_path %></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Auctions
+            </a>
+            <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" <%= link_to "Current Auctions", auctions_path %></a>
+              <a class="dropdown-item"  <%= link_to "Past Auctions", my_past_auctions_path %> 
+              <a class="dropdown-item" <%= link_to "New Auction", new_auction_path %></a>
+              <a class="dropdown-item" <%= link_to "Search Auctions", searches_path %></a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sellers
+            </a>
+            <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" <%= link_to "Sellers Page", users_path %> </a>
+              <a class="dropdown-item" <%= link_to "All Reviews", reviews_path %></a>
+              
+            </div>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Account
+              </a>
+              <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" <%= link_to "My Auctions", my_auctions_path %> </a>
+                  <a class="dropdown-item" <%= link_to " My Payments", my_payments_path %></a>
+                  <% if user_signed_in? %>
+                    <a class="dropdown-item" <%= link_to "My Bids", user_path(current_user) %></a>
+                  <% end %>
+                  <a class="dropdown-item" <%= link_to "My Reviews", my_reviews_path %></a>
+                  <a class="dropdown-item" <%= link_to "My Won Auctions", won_auctions_path %></a>
+                  <a class="dropdown-item" <%= link_to "Edit Profile", edit_user_registration_path %></a>
+              </div>
+              <li class="dropdown">
+          <li class="nav-item">
+            <a class="nav-link" <%= link_to "About", about_path %></a>
+          </li>
+        </ul>
+      </div>
+
+      
+
+    </nav>
+  
+  </head>
+ 
+  <body>
+    <% if flash[:sucess] %>
+      <div class="alert alert-success" role="alert">
+      <%= flash[:sucess]%>
+      </div>
+      <% end %>
+
+    <% if flash[:danger] %>
+      <div class="alert alert-danger" role="alert">
+      <%= flash[:danger]%>
+    </div>
+    <% end %>
+
+  <main class="container">
+    <%= yield %>
+  </main>
+
+  <div class="text-center">
+    <% unless current_page?(new_user_session_path)|| current_page?(new_user_registration_path) %>
+      <% if user_signed_in? %>
+          <%# <%= "Hi, #{current_user.name}!" %>
+          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></button>
+        <% else %>
+          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Sign In', new_user_session_path %></button>
+          <button type="button" class="btn btn-outline-primary btn-lg"><%= link_to 'Sign Up', new_user_registration_path %></button>
+        <% end %>
+      <% end %>
+      <br>
+      <br>
+      <hr width="70%">
+  </div>
+ 
+  </body>
+
+  <body class="d-flex flex-column">
+  <div id="page-content">
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <div class="col-md-7">
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; Fiesta Auctions, University of Memphis</small>
+    </div>
+  </footer>
+</body>
+</html>
+ 

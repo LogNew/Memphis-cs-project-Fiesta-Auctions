@@ -1,0 +1,117 @@
+<% if user.avatar.attached?%>
+    <div class="avatar">
+        <%= image_tag(user.avatar, class: 'img-circular', width:150, height:150, align: "left") %>
+    </div>
+    <br />
+<%end%>
+
+<h1><%= user.name %></h1>
+<h3>Contact me at <%= user.email%><br /></h3>
+
+<br>
+
+  
+<!--  Container that prints out a bid price for the user that is signed in -->
+
+<% bids.each do |bid| %>
+  <div class="card container border-primary mb-3">
+      <div class="card-header row justify-content-between text-white bg-primary">
+          <h5 class='m-0'> You bid   </h5>
+      </div>
+      <div class="card-footer">
+         <h5 class='m-0'>$<%= bid.bid_price%></h5>
+      </div>
+  </div>
+<% end %>
+
+
+
+
+<!-- 
+  Trying to get data from controller by way of association between auction and user 
+
+<% auctions.each do |auction| %>
+
+<p>  
+
+
+  TESTING THINGS HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  <%= auction.name %>
+  <br> 
+</p>
+<% end %>
+        End  -->
+
+
+<!--  Container that prints out the auctions a user has for the user that is signed in -->
+
+<% auctions.each do |auction| %>
+  <div class="card container border-primary mb-3">
+      <div class="card-header row justify-content-between text-white bg-primary">
+          <h5 class='m-0'> Selling: </h5>
+          <h5 class='m-0'> <%= auction.name%> </h5>
+          <h5 class='m-0'> $<%= auction.current_price%></h5>
+      </div>
+
+
+      <div class="card-body">
+            <p class="card-text"><%= auction.description%>
+            <p class="card-text">The current asking price is: $<%= auction.current_price%>
+            <p class="card-text">Currently, the higest bidder is  <%= auction.highest_bidder%>
+            <p class="card-text">This item is listed under <%= auction.category%>
+      </div> 
+
+      <div class="card-footer">
+        <h5 class='m-0'> <%= link_to 'More About This Auction', auction_path(auction) %></h5>
+      </div>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+<!--  Place to create a new bid. This is not attached to auction in anyway -->
+
+<p> <%= user.name %> would you like to place a bid?
+  <br>
+  <%= link_to 'Create Bid', new_bid_path(user) %>
+</p>
+
+
+
+<!--  This is a link to leave reviews about this user.   -->
+<!--  It does not work  -->
+
+
+<a class="btn btn-primary text-white" <%= link_to '+ Add Review of This Seller', new_review_path %> </a>
+
+
+
+<p>
+  <br>
+</p>
+
+
+
+
+<% review.each do |ree| %>
+  <div class="card container border-primary mb-3">
+
+      <div class="card-header row justify-content-between text-white bg-primary">
+          <h5 class='m-0'> <%= ree.title  %> </h5>
+          <h5 class='m-0'> <%= ree.rating  %> </h5>
+      </div>
+
+      <div class="card-footer">
+         <h5 class='m-0'><%= ree.description%></h5>
+      </div>
+
+      <div class="card-footer">
+        <h5 class='m-0'> Reviewed by: <%= ree.user_reviewed%> </h5>
+      </div>
+
+  </div>
+<% end %>

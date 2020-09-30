@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: bids
+#
+#  id         :bigint           not null, primary key
+#  bid_price  :float
+#  user       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :bigint
+#
+# Indexes
+#
+#  index_bids_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+
+one:
+  user: MyString
+  bid_price: 10.0
+  user_id: 1
+
+two:
+  user: MyString
+  bid_price: 10.0
+  user_id: 2

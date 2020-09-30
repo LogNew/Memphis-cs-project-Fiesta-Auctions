@@ -1,0 +1,28 @@
+<h1>My Reviews  </h1>
+<hr>
+<br>
+
+<% reviews.each do |r| %>
+    <div class="card text-center">
+    <div class="card-header">
+        <p>
+        <strong>Review By: </strong>
+        <%= r.reviewer %>
+        </p>
+    </div>
+    <div class="card-body">
+        <h3 class="card-title">
+        <b> <%= r.title %> </b>
+        </h5>
+        <p class="card-text"><%=r.description %></p>
+        <a href="#" class="btn btn-primary text-white">Rating: <%= r.rating %>/5</a>
+    </div>
+    <div class="card-footer text-muted">
+       Created  <%= time_ago_in_words(r.created_at) %> ago
+    </div>
+    </div>
+
+    <br>
+    <br>
+
+<% end %>
